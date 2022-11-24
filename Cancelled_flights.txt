@@ -1,0 +1,12 @@
+Flight: 304 06:30 is cancelled.
+Flight: 304 07:30 is cancelled.
+Flight: 304 08:30 is cancelled.
+Flight: 304 09:30 is cancelled.
+Flight: 306 06:30 is cancelled.
+Flight: 308 06:30 is cancelled.
+Flight: 310 06:30 is cancelled.
+Flight: 310 07:30 is cancelled.
+Flight: 310 08:30 is cancelled.
+Flight: 312 06:30 is cancelled.
+Flight: 312 07:30 is cancelled.
+Flight: 312 08:30 is cancelled.
