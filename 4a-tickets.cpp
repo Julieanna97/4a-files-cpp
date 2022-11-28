@@ -313,6 +313,7 @@ int allocate_seat(Flight *fp, Booking *bp, int *row, int *seat)
     // Assign class to array: first, business, economy
     if(bp->getSeatClass() == "first")
     {
+        // define each row of 7 seats
         int *tmpfarr = fp->getFArr();
         for(int p = 0; p < fp->getFSeats() * 7; p++)
         {
@@ -329,13 +330,14 @@ int allocate_seat(Flight *fp, Booking *bp, int *row, int *seat)
     // Business Class Definition
     if(bp->getSeatClass() == "business")
     {
-        
+        // define each row of 7 seats
         for(int p = 0; p < fp->getBSeats() * 7; p++)
         {
             int *tmpbarr = fp->getBArr();
             if(tmpbarr[p] == 0)
             {
                 tmpbarr[p] = 1;
+                // save previous class row & no. of seats to prevent overwrite
                 sn = p + fp->getFSeats() * 7 + 1;
                 rn = fp->getFSeats() + (int) p / 7 + 1;
                 break;
@@ -346,12 +348,14 @@ int allocate_seat(Flight *fp, Booking *bp, int *row, int *seat)
     // Economy Class Definition
     if(bp->getSeatClass() == "economy")
     {
+        // define each row of 7 seats
         for(int p = 0; p < fp->getESeats() * 7; p++)
         {
             int *tmpearr = fp->getEArr();
             if(tmpearr[p] == 0)
             {
                 tmpearr[p] = 1;
+                // save previous class row & no. of seats to prevent overwrite
                 sn = p + fp->getFSeats() * 7 + fp->getBSeats() * 7 + 1;
                 rn = fp->getFSeats() + fp->getBSeats() + (int) p / 7 + 1; 
                 break;
@@ -363,7 +367,8 @@ int allocate_seat(Flight *fp, Booking *bp, int *row, int *seat)
     {
         cerr << "Could not find class " << bp->getSeatClass() << " on this plane." << endl;
     }
-    *row = rn;
+    // refer rn & sn to pointer parameter
+    *row = rn; 
     *seat = sn;
     return(1);
 };
@@ -413,6 +418,7 @@ TicketPrinter :: TicketPrinter(list<Flight*> f, list<Booking*> b)
                     file.open(filename);
                     if(file.is_open())
                     {
+                        // Prints to ticket file
                         file << "BOOKING: " << bp->getBookNum() << endl;
                         file << "FLIGHT: " << fp->getFlightno() << " DEPARTURE: " << bp->getBDep() << " DESTINATION: " << bp->getBDest() << " " << bp->getBDate() << " " << bp->getBTime() << endl;
                         file << "PASSENGER: " << bp->getFirstName() << " " << bp->getLastName() << endl;
@@ -444,24 +450,28 @@ class CancelFlight
  * @param myFlights Address of class members to Flight class
  * @return CancelFlight 
  */
-
+/* prints cancelled flights to .txt file */
 CancelFlight :: CancelFlight(list<Flight*> myFlights)
 {
     Flight *fp;
     cout << "Cancelled Flights Printed..." << endl;
+    ofstream flightfile;
+    flightfile.open("Cancelled_flights.txt", ios::app);
     for(flightit = myFlights.begin(); flightit != myFlights.end(); flightit++)
     {
-        ofstream flightfile;
-        flightfile.open("Cancelled_flights.txt", ios::app);
-        // check if seats are free
-        if(fp->getFArr() == 0 || fp->getBArr() == 0 || fp->getEArr() == 0)
+        fp = (*flightit); 
+        int *tmpfarr = fp->getFArr(); // get index of first class
+        int *tmpbarr = fp->getBArr(); // get index of business class
+        int *tmpearr = fp->getEArr(); // get index of economy class
+        // check if seats are free, refers to index[0] of flight seats
+        if(tmpfarr[0] == 0 && tmpbarr[0] == 0 && tmpearr[0] == 0) 
         {
             // creates file to print cancelled flights
             flightfile << "Flight: " << (*flightit)->getFlightno() << " " << (*flightit)->getFTime() << " is cancelled." << endl;
         }
         else
         {
-            flightfile << "Plane is full." << endl;
+            flightfile << "Plane is not empty" << endl;
         }
     
         flightfile.close();
@@ -479,7 +489,8 @@ CancelFlight :: CancelFlight(list<Flight*> myFlights)
  */
 int main(int argc, char *argv[])
 {
-    BookingManager bookings(argv[2]);
+    // TO RUN: write to terminal: .\4a-tickets.exe bookings.csv flights.csv
+    BookingManager bookings(argv[2]); 
     FlightManager flights(argv[1]);
     TicketPrinter printer(flights.getFlights(), bookings.getBookings());
     CancelFlight cancel(flights.getFlights());
