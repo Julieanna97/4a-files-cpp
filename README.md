@@ -74,7 +74,7 @@ flightnumber,departure,destination,date,time,fseats,bseats,eseats
 The booking information have the following information.
 bookingnumber,date,time,departure,destination,seatclass,firstname,surname
 
-## Bookings.csv :
+## bookings.csv :
 
 ```
 1000,2022-10-27,06:30,GOT,LGW,first,Kalle,Kula
