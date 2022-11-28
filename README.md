@@ -55,7 +55,7 @@ flightnumber, departure, destination, date and time.
 flightnumber,departure,destination,date,time,fseats,bseats,eseats
 ```
 
-## Data inside flights.csv: 
+## flights.csv : 
 ```
 304,GOT,CPH,2022-10-27,06:30,28,70,112
 304,GOT,CPH,2022-10-27,07:30,28,70,112
@@ -74,7 +74,7 @@ flightnumber,departure,destination,date,time,fseats,bseats,eseats
 The booking information have the following information.
 bookingnumber,date,time,departure,destination,seatclass,firstname,surname
 
-## Example:
+## Bookings.csv :
 
 ```
 1000,2022-10-27,06:30,GOT,LGW,first,Kalle,Kula
