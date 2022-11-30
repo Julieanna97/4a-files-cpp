@@ -1,4 +1,4 @@
-all:	
+ticket:	tickets.cpp
 	g++ 4a-tickets.cpp -o ticket
 	
 run:
