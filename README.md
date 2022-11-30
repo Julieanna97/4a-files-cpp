@@ -28,7 +28,7 @@ Model for a Ticket Generator system to support the operations described above. A
 
 ## To run the program: 
 ```
-.\4a-tickets.exe bookings.csv flights.csv 
+.\4a-tickets.exe -f flights.csv -b bookings.csv
 ```
 
 ## Will produce the files: 
