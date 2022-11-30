@@ -1,11 +1,19 @@
-target:
-  	echo "make target"
-	g++ 4a-tickets.cpp -o ticket
+name: C/C++ CI
 
-run:
-	./ticket flights.csv bookings.csv
-  	ls -ltr
-  	cat ticket-2011.txt
-  	cat Cancelled-flights.csv
-  	ps -ef
-  	pwd
+on:
+  push:
+    branches: [ "Julie's-fix" ]
+  pull_request:
+    branches: [ "Julie's-fix" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: make
+      run: make
+    - name: make run
+      run: make run
