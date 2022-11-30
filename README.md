@@ -26,19 +26,19 @@ Add the booking & flight details to a booking/flight data class.
 
 Model for a Ticket Generator system to support the operations described above. All data in the system is held within the program’s memory or stored in files.
 
-** To run the program: **
+## To run the program: 
 ```
 .\4a-tickets.exe bookings.csv flights.csv 
 ```
 
-** Will produce the files: **
+## Will produce the files: 
 ```
 ticket-1001.txt ticket-1002.txt ticket-1003.txt ticket-1004.txt
 ticket-1005.txt ticket-1006.txt ticket-1007.txt ticket-1008.txt
 ... etc.
 ```
 
-** Information: ** 
+## Information: 
 ```
 Row seating is 2-3-2 the all flights
 Seats row 1 [  1][  2] -  [  3][  4][  5] - [  6][  7]
@@ -50,12 +50,12 @@ etc .....
 The flights information file contains this information aswell as the 
 flightnumber, departure, destination, date and time.
 
-** Fields: ** 
+## Fields: 
 ```
 flightnumber,departure,destination,date,time,fseats,bseats,eseats
 ```
 
-**Data inside flights.csv: **
+## flights.csv : 
 ```
 304,GOT,CPH,2022-10-27,06:30,28,70,112
 304,GOT,CPH,2022-10-27,07:30,28,70,112
@@ -74,7 +74,7 @@ flightnumber,departure,destination,date,time,fseats,bseats,eseats
 The booking information have the following information.
 bookingnumber,date,time,departure,destination,seatclass,firstname,surname
 
-**Example:**
+## bookings.csv :
 
 ```
 1000,2022-10-27,06:30,GOT,LGW,first,Kalle,Kula
@@ -111,7 +111,7 @@ bookingnumber,date,time,departure,destination,seatclass,firstname,surname
 2015,2022-10-27,06:30,STO,HEL,economy,Maja,Johansson
 ```
 
-**Output:**
+## Output:
 
 The tickets should be written to files in the format:
 ```
@@ -127,13 +127,13 @@ CLASS: {seatclass}
 ROW {row} SEAT {seatnumber}
 ```
 
-**Example of ticket filename:**
+## Example of ticket filename:
 
 ```
 ticket-2007.txt
 ```
 
-**Example of ticket file content:**
+## Example of ticket file content:
 ```
 BOOKING:2007
 FLIGHT:304 DEPARTURE:GOT DESTINATION:CPH 2022-10-27 06:30
