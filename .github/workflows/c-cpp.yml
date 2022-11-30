@@ -1,0 +1,23 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ "Julie's-fix" ]
+  pull_request:
+    branches: [ "Julie's-fix" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: g++ 4a-tickets.cpp -o ticket
+      run: ./ticket flights.csv bookings.csv
+    - name: make
+      run: make
+    - name: make check
+      run: make check
+    - name: make distcheck
+      run: make distcheck
