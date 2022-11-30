@@ -2,4 +2,4 @@ ticket:	4a-tickets.cpp
 	g++ 4a-tickets.cpp -o ticket
 	
 run:
-	./ticket flights.csv bookings.csv
+	./ticket -f flights.csv -b bookings.csv

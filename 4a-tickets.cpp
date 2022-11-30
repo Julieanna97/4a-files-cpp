@@ -16,6 +16,8 @@
 #include <string>
 #include <algorithm>
 #include <list>
+#include <unistd.h>
+#include <getopt.h>
 
 using namespace std;
 
@@ -134,6 +136,7 @@ class FlightManager
         /* Flight list definition */
         list<Flight*> getFlightsList;
     public:
+        FlightManager() {}
         /* Method to store gathered flight list information */
         list<Flight*> getFlights();
         FlightManager(const char *filename);
@@ -489,11 +492,53 @@ CancelFlight :: CancelFlight(list<Flight*> myFlights)
  */
 int main(int argc, char *argv[])
 {
-    // TO RUN: write to terminal: .\4a-tickets.exe bookings.csv flights.csv
-    BookingManager bookings(argv[2]); 
-    FlightManager flights(argv[1]);
-    TicketPrinter printer(flights.getFlights(), bookings.getBookings());
-    CancelFlight cancel(flights.getFlights());
+    /**
+     * @brief Create ticket using getopt() by reading files
+     * 
+     */
+    // Access data information using getopt() function
+    try
+    {
+        int opt;
+        FlightManager flights = nullptr;
+        BookingManager bookings = nullptr;
+
+        while((opt = getopt(argc, argv, ":f:b:")) != -1)
+        {
+            switch(opt)
+            {
+                case 'f':
+                    // input for flight file
+                    flights = optarg;
+                    break;
+                case 'b':
+                    // input for booking file
+                    bookings = optarg;
+                    break;
+                case '?':
+                    // if an option doesn't exist, will print error
+                    fprintf(stderr, "Unknown option: %c\n", optopt);
+                    break;
+                case ':':
+                    // prints missing arg for specific option
+                    fprintf(stderr, "Missing argc for %c\n", optopt);
+                    break;
+                default:
+                    // if all else fails in the options
+                    fprintf(stderr, "Usage:  .\4a-tickets.exe[ -f flight-file ] [ -b booking-file ]\n");
+                    break;
+            }
+        }
+
+        TicketPrinter printer(flights.getFlights(), bookings.getBookings());
+        CancelFlight cancel(flights.getFlights()); 
+    }
+    // if operator fails, this message pops
+    catch(exception &e)
+    {
+        cerr << "Exception occured!" << strerror(errno);
+    }
+
 
     return 0;
 }
