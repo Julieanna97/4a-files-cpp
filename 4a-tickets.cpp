@@ -474,9 +474,9 @@ CancelFlight :: CancelFlight(list<Flight*> myFlights)
             flightfile << "Plane is not empty" << endl;
         }
     
-        flightfile.close();
 
     }
+    flightfile.close();
 }
 
 /**
