@@ -11,5 +11,6 @@
         "iostream": "cpp",
         "fstream": "cpp",
         "iosfwd": "cpp"
-    }
+    },
+    "C_Cpp.default.configurationProvider": "ms-vscode.makefile-tools"
 }
