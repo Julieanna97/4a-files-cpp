@@ -494,7 +494,9 @@ int main(int argc, char *argv[])
 {
     /**
      * @brief Create ticket using getopt() by reading files
-     * 
+     * @param[in] optarg Stores the value of the option argument found by getopts.
+     * @param[in] optopt detects a missing argument or unknown option
+     * @param[out] returns tickets on success.
      */
     // Access data information using getopt() function
     try
