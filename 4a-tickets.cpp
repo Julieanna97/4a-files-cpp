@@ -2,8 +2,8 @@
  * @file 4a-tickets.cpp
  * @author Julie Anne(julie.cantillep@studerande.movant.se)
  * @brief Program that demonstrate a ticket generator system in C++
- * @version 0.1
- * @date 2022-11-24
+ * @version 1.0
+ * @date 2022-11-30
  * 
  * @copyright Copyright (c) 2022
  * 
